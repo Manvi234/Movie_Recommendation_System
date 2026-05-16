@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir \
 COPY src/ src/
 COPY data/models/ data/models/
 COPY data/processed/user_features/ data/processed/user_features/
-COPY data/raw/ml-latest-small/movies.csv data/raw/ml-latest-small/movies.csv
+COPY data/raw/movies.csv data/raw/ml-latest-small/movies.csv
 
 ENV PYTHONPATH=/app/src
 EXPOSE 8000
