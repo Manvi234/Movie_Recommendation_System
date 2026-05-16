@@ -158,6 +158,61 @@ def recommend(user_id: int, n: int = 10):
     return {"userId": user_id, "recommendations": results}
 
 
+class NewUserRequest(BaseModel):
+    genre_prefs: dict[str, float]   # e.g. {"horror": 1.0, "action": 0.0, ...}
+    n: int = 10
+
+
+@app.post("/recommend/new-user")
+def recommend_new_user(req: NewUserRequest):
+    """Content-based cold-start for users not in the training data."""
+    liked_genres = {g for g, v in req.genre_prefs.items() if v > 0}
+
+    # Build movieId → genre set lookup once
+    genre_lookup: dict[int, set] = {}
+    if state.movies is not None:
+        for _, row in state.movies.iterrows():
+            genre_lookup[int(row["movieId"])] = {
+                g.lower().replace("-", "_") for g in str(row["genres"]).split("|")
+            }
+
+    item_embeddings = state.item_embeddings
+    item_ids = state.item_ids
+
+    matching_indices = [
+        i for i, mid in enumerate(item_ids)
+        if liked_genres & genre_lookup.get(int(mid), set())
+    ]
+
+    user_vec = (
+        item_embeddings[matching_indices].mean(axis=0)
+        if matching_indices
+        else item_embeddings.mean(axis=0)
+    )
+    norm = np.linalg.norm(user_vec)
+    if norm > 1e-8:
+        user_vec = user_vec / norm
+
+    scores = item_embeddings @ user_vec
+    all_ranked = np.argsort(scores)[::-1]
+
+    results = []
+    for i in all_ranked:
+        mid = int(item_ids[i])
+        if not liked_genres or liked_genres & genre_lookup.get(mid, set()):
+            entry: dict = {"movieId": mid, "score": round(float(scores[i]), 4)}
+            if state.movies is not None:
+                row = state.movies[state.movies["movieId"] == mid]
+                if not row.empty:
+                    entry["title"] = row.iloc[0]["title"]
+                    entry["genres"] = row.iloc[0]["genres"]
+            results.append(entry)
+        if len(results) >= req.n:
+            break
+
+    return {"recommendations": results}
+
+
 class FeedbackEvent(BaseModel):
     userId: int
     movieId: int
