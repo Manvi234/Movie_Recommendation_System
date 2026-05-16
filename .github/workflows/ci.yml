@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install ruff
+      - run: ruff check src/ tests/
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install tensorflow keras numpy pandas scikit-learn pytest
+      - name: Run unit tests
+        run: PYTHONPATH=src pytest tests/unit/ -v
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Install dependencies
+        run: pip install pyspark==3.5.3 delta-spark==3.2.1 pandas pyarrow numpy pytest
+      - name: Generate synthetic test data
+        run: python tests/integration/generate_test_data.py
+      - name: Run Spark batch pipeline on synthetic data
+        env:
+          PYSPARK_PYTHON: python
+        run: |
+          spark-submit \
+            --packages io.delta:delta-spark_2.12:3.2.1 \
+            src/spark/batch_pipeline.py
