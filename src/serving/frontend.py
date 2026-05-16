@@ -119,9 +119,6 @@ def load_user_info():
     return df.sort_values("userId")[["userId", "rating_count", "avg_rating"]].reset_index(drop=True)
 
 
-@st.cache_data
-def load_movies():
-    return pd.read_csv("data/raw/ml-latest-small/movies.csv")
 
 
 def score_color(score: float) -> str:
@@ -172,7 +169,6 @@ def check_api() -> bool:
 
 try:
     user_info = load_user_info()
-    movies_df = load_movies()
 except Exception as e:
     st.error(f"Failed to load data: {e}")
     st.stop()
@@ -196,7 +192,7 @@ st.markdown(f"""
         <div class="stat-label">Users</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">{len(movies_df):,}</div>
+        <div class="stat-number">9,724</div>
         <div class="stat-label">Movies</div>
     </div>
     <div class="stat-card">
