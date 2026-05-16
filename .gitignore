@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+.eggs/
+
+# Environments
+.env
+.venv/
+venv/
+
+# Large raw data (not needed for deployment)
+data/raw/ml-latest-small/ratings.csv
+data/raw/ml-latest-small/tags.csv
+data/raw/ml-latest-small/links.csv
+
+# Spark / Delta internals
+data/processed/training_data/
+data/processed/item_features/
+data/processed/live_events/
+data/processed/user_activity/
+data/checkpoints/
+
+# Custom user profiles (local only)
+data/custom_users.json
+
+# Spark event logs
+spark-warehouse/
+derby.log
+metastore_db/
+
+# Mac
+.DS_Store
+
+# IDE
+.idea/
+.vscode/

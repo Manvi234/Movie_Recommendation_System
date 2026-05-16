@@ -1,1 +1,106 @@
-{}
+{
+  "Alex": {
+    "name": "Alex",
+    "avg_rating": 3.5,
+    "rating_count": 50,
+    "rating_variance": 0.8,
+    "genre_prefs": {
+      "action": 1.0,
+      "adventure": 0.0,
+      "animation": 0.0,
+      "children": 0.0,
+      "comedy": 1.0,
+      "crime": 0.0,
+      "documentary": 0.0,
+      "drama": 1.0,
+      "fantasy": 0.0,
+      "film_noir": 0.0,
+      "horror": 0.0,
+      "musical": 0.0,
+      "mystery": 0.0,
+      "romance": 0.0,
+      "sci_fi": 0.0,
+      "thriller": 0.0,
+      "war": 0.0,
+      "western": 0.0
+    }
+  },
+  "Manvi": {
+    "name": "Manvi",
+    "avg_rating": 3.5,
+    "rating_count": 50,
+    "rating_variance": 0.8,
+    "genre_prefs": {
+      "action": 0.0,
+      "adventure": 0.0,
+      "animation": 0.0,
+      "children": 0.0,
+      "comedy": 0.0,
+      "crime": 0.0,
+      "documentary": 0.0,
+      "drama": 0.0,
+      "fantasy": 0.0,
+      "film_noir": 0.0,
+      "horror": 1.0,
+      "musical": 0.0,
+      "mystery": 1.0,
+      "romance": 0.0,
+      "sci_fi": 0.0,
+      "thriller": 1.0,
+      "war": 0.0,
+      "western": 0.0
+    }
+  },
+  "Alice": {
+    "name": "Alice",
+    "avg_rating": 4.5,
+    "rating_count": 150,
+    "rating_variance": 0.8,
+    "genre_prefs": {
+      "action": 0.0,
+      "adventure": 0.0,
+      "animation": 1.0,
+      "children": 1.0,
+      "comedy": 0.0,
+      "crime": 0.0,
+      "documentary": 0.0,
+      "drama": 0.0,
+      "fantasy": 1.0,
+      "film_noir": 0.0,
+      "horror": 0.0,
+      "musical": 0.0,
+      "mystery": 0.0,
+      "romance": 0.0,
+      "sci_fi": 0.0,
+      "thriller": 0.0,
+      "war": 0.0,
+      "western": 0.0
+    }
+  },
+  "Sanskar": {
+    "name": "Sanskar",
+    "avg_rating": 3.5,
+    "rating_count": 150,
+    "rating_variance": 0.8,
+    "genre_prefs": {
+      "action": 0.0,
+      "adventure": 0.0,
+      "animation": 0.0,
+      "children": 0.0,
+      "comedy": 0.0,
+      "crime": 0.0,
+      "documentary": 0.0,
+      "drama": 0.0,
+      "fantasy": 0.0,
+      "film_noir": 0.0,
+      "horror": 1.0,
+      "musical": 0.0,
+      "mystery": 0.0,
+      "romance": 0.0,
+      "sci_fi": 0.0,
+      "thriller": 0.0,
+      "war": 0.0,
+      "western": 0.0
+    }
+  }
+}
