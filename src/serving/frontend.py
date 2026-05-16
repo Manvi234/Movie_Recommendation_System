@@ -12,7 +12,7 @@ import pandas as pd
 import requests
 import streamlit as st
 
-API_URL = os.getenv("API_URL", "http://localhost:8000")
+API_URL = os.getenv("API_URL", "https://movie-recommendation-system-9auf.onrender.com")
 MODEL_DIR = "data/models"
 DATA_DIR = "data/processed"
 PROFILES_FILE = "data/custom_users.json"
