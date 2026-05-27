@@ -8,6 +8,10 @@ import random
 import pandas as pd
 
 OUT_DIR = "data/raw/ml-latest-small"
+
+# Remove if it exists as a symlink or file (not a real directory)
+if os.path.islink(OUT_DIR) or (os.path.exists(OUT_DIR) and not os.path.isdir(OUT_DIR)):
+    os.remove(OUT_DIR)
 os.makedirs(OUT_DIR, exist_ok=True)
 
 NUM_USERS = 50
