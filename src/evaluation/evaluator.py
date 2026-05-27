@@ -14,8 +14,7 @@ import pickle
 import keras
 import numpy as np
 import pandas as pd
-import tensorflow as tf
-from models.two_tower import L2Normalize  # registers the custom layer before loading
+from models.two_tower import L2Normalize  # noqa: F401 — registers custom layer before load_model
 
 
 MODEL_DIR = "data/models"

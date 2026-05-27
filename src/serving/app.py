@@ -16,10 +16,8 @@ from typing import Any
 import keras
 import numpy as np
 import pandas as pd
-import tensorflow as tf
 from fastapi import FastAPI, HTTPException
-from models.two_tower import L2Normalize  # registers the custom layer before loading
-from fastapi.responses import JSONResponse
+from models.two_tower import L2Normalize  # noqa: F401 — registers custom layer before load_model
 from pydantic import BaseModel
 
 try:

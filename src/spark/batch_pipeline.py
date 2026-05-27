@@ -4,8 +4,6 @@ Reads raw MovieLens files → engineers features → writes Delta Lake tables.
 Run with:
   spark-submit --packages io.delta:delta-spark_2.12:3.2.1 src/spark/batch_pipeline.py
 """
-import re
-import sys
 
 from pyspark.sql import SparkSession, Window
 from pyspark.sql import functions as F
