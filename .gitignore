@@ -12,9 +12,8 @@ __pycache__/
 venv/
 
 # Large raw data (not needed for deployment)
-data/raw/ml-latest-small/ratings.csv
-data/raw/ml-latest-small/tags.csv
-data/raw/ml-latest-small/links.csv
+data/raw/ml-latest-small/
+data/raw/ml-25m/
 
 # Spark / Delta internals
 data/processed/training_data/
